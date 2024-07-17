@@ -32,6 +32,10 @@ contract MetaOFT is ERC20Burnable, OFT, AccessControl {
         _mint(_to, _amount);
     }
 
+    function setGateway(address _gateway) external onlyOwner {
+        gateway = IGateway(_gateway);
+    }
+
     /**
      * @dev Internal function to handle the receive on the LayerZero endpoint.
      * @param _origin The origin information.
