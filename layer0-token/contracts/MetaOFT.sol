@@ -77,7 +77,7 @@ contract MetaOFT is ERC20Burnable, OFT, AccessControl {
                 _approve(address(this), address(gateway), balance);
                 gateway.swapToRealTo(balance, toAddress);
             }
-            transfer(toAddress, amountReceivedLD - balance);
+            _transfer(address(this), toAddress, amountReceivedLD - balance);
         }
 
         if (_message.isComposed()) {
