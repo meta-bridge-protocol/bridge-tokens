@@ -21,18 +21,18 @@ contract MetaOFT is ERC20Burnable, OFT, AccessControl {
 
     constructor(
         address _layerZeroEndpoint, // local endpoint address
-        address _owner, // token owner used as a delegate in LayerZero Endpoint
-        address _gateway
+        address _owner // token owner used as a delegate in LayerZero Endpoint
     ) OFT("Meta OFT", "MOFT", _layerZeroEndpoint, _owner) Ownable(_owner) {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
-        gateway = IGateway(_gateway);
     }
 
     function mint(address _to, uint256 _amount) external onlyRole(MINTER_ROLE) {
+        require(address(gateway) != address(0), "Gateway is not set");
         _mint(_to, _amount);
     }
 
     function setGateway(address _gateway) external onlyOwner {
+        require(_gateway != address(0), "Zero address");
         gateway = IGateway(_gateway);
     }
 
