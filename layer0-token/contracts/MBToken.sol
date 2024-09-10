@@ -60,7 +60,7 @@ contract MBToken is ERC20Burnable, OFT, AccessControl {
         // Thus everything is bytes32() encoded in flight.
         address toAddress = _message.sendTo().bytes32ToAddress();
 
-        uint256 balance = IERC20(gateway.realToken()).balanceOf(
+        uint256 balance = IERC20(gateway.nativeToken()).balanceOf(
             address(gateway)
         );
 
@@ -73,11 +73,11 @@ contract MBToken is ERC20Burnable, OFT, AccessControl {
 
         if (balance >= amountReceivedLD) {
             _approve(address(this), address(gateway), amountReceivedLD);
-            gateway.swapToRealTo(amountReceivedLD, toAddress);
+            gateway.swapToNativeTo(amountReceivedLD, toAddress);
         } else {
             if (balance > 0) {
                 _approve(address(this), address(gateway), balance);
-                gateway.swapToRealTo(balance, toAddress);
+                gateway.swapToNativeTo(balance, toAddress);
             }
             _transfer(address(this), toAddress, amountReceivedLD - balance);
         }
