@@ -4,12 +4,12 @@ import type { OAppOmniGraphHardhat, OmniPointHardhat } from '@layerzerolabs/tool
 
 const sepoliaContract: OmniPointHardhat = {
     eid: EndpointId.SEPOLIA_V2_TESTNET,
-    contractName: 'DeusOFT',
+    contractName: 'MetaDEUS',
 }
 
-const bsctestContract: OmniPointHardhat = {
-    eid: EndpointId.BSC_V2_TESTNET,
-    contractName: 'DeusOFT',
+const arbitrumSepoliaContract: OmniPointHardhat = {
+    eid: EndpointId.ARBSEP_V2_TESTNET,
+    contractName: 'MetaDEUS',
 }
 
 const config: OAppOmniGraphHardhat = {
@@ -18,13 +18,13 @@ const config: OAppOmniGraphHardhat = {
             contract: sepoliaContract,
         },
         {
-            contract: bsctestContract,
+            contract: arbitrumSepoliaContract,
         },
     ],
     connections: [
         {
             from: sepoliaContract,
-            to: bsctestContract,
+            to: arbitrumSepoliaContract,
             config: {
                 // Required Send Library Address on Sepolia
                 sendLibrary: "0xcc1ae8Cf5D3904Cef3360A9532B477529b177cCE",
@@ -43,8 +43,7 @@ const config: OAppOmniGraphHardhat = {
                     // The address of the DVNs you will pay to verify a sent message on the source chain (Sepolia).
                     // The destination tx will wait until ALL `requiredDVNs` verify the message.
                     requiredDVNs: [
-                        "0x5bC4E9c3Ba142611AA0EF98a66B3fd3E7e5ebe2a",
-                        "0x8eebf8b423B73bFCa51a1Db4B7354AA0bFCA9193"
+                        "0xe3F407205976D1485f4213A5A26c24Fa35021C34",
                     ],
                     // The address of the DVNs you will pay to verify a sent message on the source chain (Sepolia).
                     // The destination tx will wait until the configured threshold of `optionalDVNs` verify a message.
@@ -63,8 +62,7 @@ const config: OAppOmniGraphHardhat = {
                     // The address of the DVNs your `receiveConfig` expects to receive verifications from on the `from` chain (Sepolia).
                     // The `from` chain's OApp will wait until the configured threshold of `requiredDVNs` verify the message.
                     requiredDVNs: [
-                        "0x5bC4E9c3Ba142611AA0EF98a66B3fd3E7e5ebe2a",
-                        "0x8eebf8b423B73bFCa51a1Db4B7354AA0bFCA9193"
+                        "0xe3F407205976D1485f4213A5A26c24Fa35021C34",
                     ],
                     // The address of the `optionalDVNs` you expect to receive verifications from on the `from` chain (Sepolia).
                     // The destination tx will wait until the configured threshold of `optionalDVNs` verify the message.
@@ -77,12 +75,12 @@ const config: OAppOmniGraphHardhat = {
             }
         },
         {
-            from: bsctestContract,
+            from: arbitrumSepoliaContract,
             to: sepoliaContract,
             config: {
-                sendLibrary: "0x55f16c442907e86D764AFdc2a07C2de3BdAc8BB7",
+                sendLibrary: "0x4f7cd4DA19ABB31b0eC98b9066B9e857B1bf9C0E",
                 receiveLibraryConfig: {
-                  receiveLibrary: "0x188d4bbCeD671A7aA2b5055937F79510A32e9683",
+                  receiveLibrary: "0x75Db67CDab2824970131D5aa9CECfC9F69c69636",
                   gracePeriod: BigInt(0),
                 },
                 // Optional Send Configuration
@@ -92,8 +90,7 @@ const config: OAppOmniGraphHardhat = {
                     confirmations: BigInt(42),
                     // The destination tx will wait until ALL `requiredDVNs` verify the message.
                     requiredDVNs: [
-                        "0x9d95ebe060750440a0c335E59c1620C0d52256F5",
-                        "0x0eE552262f7B562eFcED6DD4A7e2878AB897d405"
+                        "0x0147c481f30f4EE4F747f96a78CbcE3ef0Eb5Ed4",
                     ],
                     // The destination tx will wait until the configured threshold of `optionalDVNs` verify a message.
                     optionalDVNs: [
@@ -109,8 +106,7 @@ const config: OAppOmniGraphHardhat = {
                     confirmations: BigInt(42),
                     // The `from` chain's OApp will wait until the configured threshold of `requiredDVNs` verify the message.
                     requiredDVNs: [
-                        "0x9d95ebe060750440a0c335E59c1620C0d52256F5",
-                        "0x0eE552262f7B562eFcED6DD4A7e2878AB897d405"
+                        "0x0147c481f30f4EE4F747f96a78CbcE3ef0Eb5Ed4",
                     ],
                     // The destination tx will wait until the configured threshold of `optionalDVNs` verify the message.
                     optionalDVNs: [

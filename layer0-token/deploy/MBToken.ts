@@ -1,7 +1,7 @@
 import assert from 'assert'
 import { type DeployFunction } from 'hardhat-deploy/types'
 
-const contractName = 'MetaOFT'
+const contractName = 'MBToken'
 
 function sleep(milliseconds: number) {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
@@ -37,6 +37,8 @@ const deploy: DeployFunction = async (hre) => {
     const endpointV2Deployment = await hre.deployments.get('EndpointV2')
 
     const args = [
+      "MBToken",
+      "mbToken",
       endpointV2Deployment.address, // LayerZero's EndpointV2 address
       deployer, // owner
     ]

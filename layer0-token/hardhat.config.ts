@@ -29,6 +29,12 @@ const networks: { [networkName: string]: HttpNetworkUserConfig } = {
     url: "https://bsc-testnet.publicnode.com",
     chainId: 97,
     accounts
+  },
+  arbitrumSepolia: {
+    eid: EndpointId.ARBSEP_V2_TESTNET,
+    url: "https://rpc.ankr.com/arbitrum_sepolia",
+    chainId: 421614,
+    accounts
   }
 }
 
@@ -72,7 +78,8 @@ const config: HardhatUserConfig = {
       polygonMumbai: process.env.POLYGON_KEY || "",
       lineaMainnet: process.env.LINEASCAN_KEY || "",
       optimisticEthereum: process.env.OPTIMISM_KEY || "",
-      avalancheFujiTestnet: process.env.AVALANCHE_KEY || ""
+      avalancheFujiTestnet: process.env.AVALANCHE_KEY || "",
+      arbitrumSepolia: process.env.ARBSCAN_KEY || ""
     },
     customChains: [
       {
@@ -89,6 +96,14 @@ const config: HardhatUserConfig = {
         urls: {
           apiURL: "https://api.lineascan.build/api",
           browserURL: "https://lineascan.build/",
+        },
+      },
+      {
+        network: "arbitrumSepolia",
+        chainId: 421614,
+        urls: {
+          apiURL: "https://api-sepolia.arbiscan.io/api",
+          browserURL: "https://sepolia.arbiscan.io/",
         },
       }
     ]
